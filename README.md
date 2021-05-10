@@ -22,4 +22,4 @@ meteor
 - [x] Delete a single task
 - [x] Delete all the repeated tasks
 - [ ] Calendar view
-- [ ] Design 
+- [ ] Design
