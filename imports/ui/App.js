@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 
 const toggleChecked = ({ _id, isChecked }) => Meteor.call('tasks.setIsChecked', _id, !isChecked);
-
 const deleteSingleTask = ({ _id }) => Meteor.call('tasks.remove', _id);
 const deleteAllTasks = ({ goupId }) => Meteor.call('tasks.removeAll', goupId);
 
@@ -25,6 +24,7 @@ export const App = () => {
     if (!Meteor.user()) {
       return noDataAvailable;
     }
+
     const handler = Meteor.subscribe('tasks');
 
     if (!handler.ready()) {
@@ -37,6 +37,7 @@ export const App = () => {
         sort: { startDate: 1, createdAt: 1 },
       }
     ).fetch();
+
     const pendingTasksCount = TasksCollection.find(pendingOnlyFilter).count();
 
     return { tasks, pendingTasksCount };
@@ -92,8 +93,8 @@ export const App = () => {
             </ul>
           </Fragment>
         ) : (
-            <LoginForm />
-          )}
+          <LoginForm />
+        )}
       </div>
     </div>
   );
